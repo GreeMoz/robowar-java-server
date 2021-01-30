@@ -1,2 +1,25 @@
 server:
   port: 9002
+
+spring:
+  jpa:
+    properties:
+      hibernate.show_sql: false
+      hibernate.hbm2ddl.auto: update
+      hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+      hibernate.jdbc.lob.non_contextual_creation: true
+      hibernate.temp.use_jdbc_metadata_defaults: false
+      hibernate.format_sql: true
+      hibernate.jdbc.time_zone: UTC
+      hibernate.jdbc.batch_size: 100
+      hibernate.jdbc.order_inserts: true
+      hibernate.jdbc.order_updates: true
+      hibernate.implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+      hibernate.physical_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+      #      hibernate.generate_statistics: true
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOUCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
+
