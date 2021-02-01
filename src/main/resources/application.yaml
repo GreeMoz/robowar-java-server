@@ -28,4 +28,5 @@ security:
     expired: 3600000
     secret: testtest
 
-
+logging:
+  level: info
