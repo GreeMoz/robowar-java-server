@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,4 +23,7 @@ public class Role extends Auditable {
     private String name;
 
     private String code;
+
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    private List<Account> accounts;
 }
