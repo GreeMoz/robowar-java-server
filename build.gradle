@@ -33,6 +33,7 @@ ext {
     springBootVersion = '2.2.4.RELEASE'
     jjwtVersion = '0.2'
     lombokVersion = "1.18.12"
+    swaggerVersion = '2.9.2'
 }
 
 dependencies {
@@ -44,6 +45,9 @@ dependencies {
     runtimeOnly 'org.postgresql:postgresql'
 
     implementation("io.jsonwebtoken:jjwt:${jjwtVersion}")
+
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: "${swaggerVersion}"
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${swaggerVersion}"
 
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
