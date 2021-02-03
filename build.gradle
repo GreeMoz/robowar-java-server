@@ -46,8 +46,8 @@ dependencies {
 
     implementation("io.jsonwebtoken:jjwt:${jjwtVersion}")
 
-    compile group: 'io.springfox', name: 'springfox-swagger2', version: "${swaggerVersion}"
-    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: "${swaggerVersion}"
+    compile group: 'com.google.guava', name: 'guava', version: '11.0.2'
+    compile group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 
     compileOnly("org.projectlombok:lombok:${lombokVersion}")
     annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
