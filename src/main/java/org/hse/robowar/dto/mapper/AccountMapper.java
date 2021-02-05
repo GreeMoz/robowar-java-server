@@ -5,14 +5,8 @@ import org.hse.robowar.model.Account;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
-import java.util.List;
-
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AccountMapper extends EntityMapper<AccountDTO, Account> {
-
-
-    @Override
-    Account toEntity(AccountDTO dto);
 
     @Mapping(target = "createdBy", ignore = true)
     @Mapping(target = "createdAt", ignore = true)
@@ -21,6 +15,9 @@ public interface AccountMapper extends EntityMapper<AccountDTO, Account> {
     @Mapping(target = "firstName", ignore = true)
     @Mapping(target = "lastName", ignore = true)
     @Mapping(target = "password", ignore = true)
+    @Override
+    Account toEntity(AccountDTO dto);
+
     @Override
     AccountDTO toDto(Account entity);
 }
