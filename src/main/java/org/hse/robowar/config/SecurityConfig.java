@@ -10,12 +10,18 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 
 @Configuration
 @AllArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider jwtTokenProvider;
+
+    private final String[] standartMatchers = {"/actuator/**",
+            "/swagger-ui.html**",
+            "/v2/api-docs/**",
+            "/swagger-resources/**",
+            "/webjars/springfox-swagger-ui/**"};
+
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
@@ -31,6 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(StringConstant.PUBLIC_ENDPOINT).permitAll()
+                .antMatchers(standartMatchers).permitAll()
                 .antMatchers(StringConstant.ADMIN_ENDPOINT).hasRole(StringConstant.ROLE_ADMIN_CODE)
                 .anyRequest().authenticated()
                 .and()
