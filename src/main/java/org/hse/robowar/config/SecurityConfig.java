@@ -17,7 +17,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private final JwtTokenProvider jwtTokenProvider;
 
     private final String[] standartMatchers = {"/actuator/**",
-            "/swagger-ui.html**",
+            "/swagger-ui/**",
             "/v2/api-docs/**",
             "/swagger-resources/**",
             "/webjars/springfox-swagger-ui/**"};
