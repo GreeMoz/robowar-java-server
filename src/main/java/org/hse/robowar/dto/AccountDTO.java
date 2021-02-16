@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hse.robowar.model.Role;
-import org.hse.robowar.model.Status;
+import org.hse.robowar.enums.Status;
 
 import java.io.Serializable;
 import java.util.List;

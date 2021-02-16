@@ -2,6 +2,7 @@ package org.hse.robowar.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
+import org.hse.robowar.enums.Status;
 
 import javax.persistence.*;
 import java.util.List;

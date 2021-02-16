@@ -1,11 +1,9 @@
 package org.hse.robowar.service.impl;
 
-import javassist.NotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hse.robowar.model.Account;
-import org.hse.robowar.model.Role;
-import org.hse.robowar.model.Status;
+import org.hse.robowar.enums.Status;
 import org.hse.robowar.repository.AccountRepository;
 import org.hse.robowar.repository.RoleRepository;
 import org.hse.robowar.service.AccountService;
