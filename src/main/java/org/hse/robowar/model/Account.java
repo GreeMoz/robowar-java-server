@@ -22,6 +22,8 @@ public class Account extends Auditable {
     private String email;
     private String password;
 
+    private int money;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", columnDefinition = "varchar(32) default 'Active'", nullable = false)
     private Status status;
