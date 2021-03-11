@@ -24,6 +24,6 @@ public class Role extends Auditable {
 
     private String code;
 
-    //@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    //private List<Account> accounts;
+//    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+//    private List<Account> accounts;
 }
