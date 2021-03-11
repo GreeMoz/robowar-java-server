@@ -22,6 +22,27 @@ public class Account extends Auditable {
     private String email;
     private String password;
 
+    private int money;
+    private int mmr;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "account_basis",
+            joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "basis_id", referencedColumnName = "id")})
+    private List<Basis> basis;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "account_combat_equipment",
+            joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "combat_equipment_id", referencedColumnName = "id")})
+    private List<CombatEquipment> CombatEquipmentList;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "account_movement_equipment",
+            joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "movement_equipment_id", referencedColumnName = "id")})
+    private List<MovementEquipment> MovementEquipmentList;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "status", columnDefinition = "varchar(32) default 'Active'", nullable = false)
     private Status status;
