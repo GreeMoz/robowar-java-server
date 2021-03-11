@@ -28,7 +28,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .groupName("secured")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.hse.robowar.controller"))
-                .paths(Predicate.not(PathSelectors.regex("/public/**")))
+                .paths(Predicate.not(PathSelectors.ant("/public/**")))
                 .build()
                 .securitySchemes(Lists.newArrayList(apiKey()))
                 .securityContexts(Lists.newArrayList(securityContext()));
@@ -55,7 +55,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 .groupName("public")
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("org.hse.robowar.controller"))
-                .paths(PathSelectors.regex("/public/**"))
+                .paths(PathSelectors.ant("/public/**"))
                 .build();
     }
 
