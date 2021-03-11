@@ -4,6 +4,7 @@ import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 import org.hse.robowar.enums.detail.Armor;
 import org.hse.robowar.enums.detail.BasisType;
+import org.hse.robowar.enums.detail.RobotStatus;
 
 import javax.persistence.*;
 import java.util.List;
@@ -16,13 +17,15 @@ public class Robot {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private UUID id;
-    private int MMR;
+    private int mmr;
 
     private double charge;
     private double wear;
     private double weight;
     private double speed;
     private double tiredness;
+
+    private RobotStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "robot_basis",
