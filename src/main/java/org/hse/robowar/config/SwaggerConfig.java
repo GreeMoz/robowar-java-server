@@ -54,7 +54,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
         return new Docket(DocumentationType.SWAGGER_2)
                 .groupName("public")
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.lunawealth.accounts"))
+                .apis(RequestHandlerSelectors.basePackage("org.hse.robowar.controller"))
                 .paths(PathSelectors.regex("/public/**"))
                 .build();
     }
