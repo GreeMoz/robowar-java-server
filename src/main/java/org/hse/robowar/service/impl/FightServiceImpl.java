@@ -8,6 +8,7 @@ import org.hse.robowar.service.FightService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -19,5 +20,10 @@ public class FightServiceImpl implements FightService {
     @Override
     public List<Fight> findAll() {
         return fightRepository.findAll();
+    }
+
+    @Override
+    public Fight findById(UUID id) {
+        return fightRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Fight with id " + id.toString() + " is not exist"));
     }
 }

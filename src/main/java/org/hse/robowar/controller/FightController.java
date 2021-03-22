@@ -7,10 +7,12 @@ import org.hse.robowar.dto.mapper.FightMapper;
 import org.hse.robowar.service.FightService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RequiredArgsConstructor
 @Slf4j
@@ -24,5 +26,10 @@ public class FightController {
     @GetMapping
     public ResponseEntity<List<FightDTO>> findAll() {
         return ResponseEntity.ok(fightMapper.toDto(fightService.findAll()));
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FightDTO> findById(@PathVariable UUID id) {
+        return ResponseEntity.ok(fightMapper.toDto(fightService.findById(id)));
     }
 }
