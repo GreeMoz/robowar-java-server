@@ -52,4 +52,10 @@ public class Account extends Auditable {
             joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "id")})
     private List<Role> roles;
+
+    @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "account_algorithms",
+            joinColumns = {@JoinColumn(name = "account_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "algorithms_id", referencedColumnName = "id")})
+    private List<BotAlgorithm> algorithms;
 }

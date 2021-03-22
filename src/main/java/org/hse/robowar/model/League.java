@@ -45,4 +45,16 @@ public class League {
             inverseJoinColumns = {@JoinColumn(name = "armor_equipment_id", referencedColumnName = "id")})
     private List<ArmorEquipment> ArmorEquipmentList;
 
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "league_arena",
+            joinColumns = {@JoinColumn(name = "league_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "arena_id", referencedColumnName = "id")})
+    private List<Arena> ArenaList;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "league_robot",
+            joinColumns = {@JoinColumn(name = "league_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")})
+    private List<Robot> RobotList;
+
 }
