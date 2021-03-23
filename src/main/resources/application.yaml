@@ -27,3 +27,5 @@ security:
   token:
     secret: testtest
     expired: 3600000
+
+python_url: ${PYTHON_URL}
