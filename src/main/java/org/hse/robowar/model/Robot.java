@@ -2,8 +2,6 @@ package org.hse.robowar.model;
 
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
-import org.hse.robowar.enums.detail.Armor;
-import org.hse.robowar.enums.detail.BasisType;
 import org.hse.robowar.enums.detail.RobotStatus;
 
 import javax.persistence.*;
@@ -17,6 +15,11 @@ public class Robot {
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private UUID id;
+
+    @ManyToOne
+    @JoinColumn(name="account_id", referencedColumnName = "id")
+    private Account account;
+
     private int mmr;
 
     private double charge;
