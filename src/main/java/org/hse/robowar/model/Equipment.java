@@ -13,4 +13,6 @@ public abstract class Equipment {
     private double locationX;
     private double locationY;
     private double locationZ;
+
+    private int cost;
 }
