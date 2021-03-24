@@ -24,5 +24,7 @@ public class Fight {
 
     private UUID winnerAccount;
 
-    private String stepsOfFight;
+    private String fightMap;
+
+    private UUID arenaId;
 }

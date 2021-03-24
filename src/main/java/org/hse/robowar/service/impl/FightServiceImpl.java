@@ -7,11 +7,13 @@ import org.hse.robowar.dto.FightDTO;
 import org.hse.robowar.dto.FightRequestDTO;
 import org.hse.robowar.dto.FightResponseDTO;
 import org.hse.robowar.dto.mapper.ArenaMapper;
+import org.hse.robowar.dto.mapper.FightMapper;
 import org.hse.robowar.dto.mapper.RobotMapper;
 import org.hse.robowar.model.Arena;
 import org.hse.robowar.model.League;
 import org.hse.robowar.model.Robot;
 import org.hse.robowar.remote.PythonRMI;
+import org.hse.robowar.repository.FightRepository;
 import org.hse.robowar.repository.LeagueRepository;
 import org.hse.robowar.repository.RobotRepository;
 import org.hse.robowar.service.FightService;
@@ -28,9 +30,11 @@ public class FightServiceImpl implements FightService {
 
     private final RobotRepository robotRepository;
     private final LeagueRepository leagueRepository;
+    private final FightRepository fightRepository;
 
     private final RobotMapper robotMapper;
     private final ArenaMapper arenaMapper;
+    private final FightMapper fightMapper;
 
     private final PythonRMI pythonRMI;
 
@@ -55,7 +59,9 @@ public class FightServiceImpl implements FightService {
                 .getAsInt());
 
         log.info("FightRequest generated for bots {}, {} in league {}", robot1.getId(), robot2.getId(), league.getId());
-        return toFightDTO(pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena)), robot1, robot2, arena);
+        FightDTO fight = toFightDTO(pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena)), robot1, robot2, arena);
+        fightRepository.save(fightMapper.toEntity(fight));
+        return fight;
     }
 
     private Robot getRandomRobotFromRobots(int index, List<Robot> robots) {
@@ -78,13 +84,16 @@ public class FightServiceImpl implements FightService {
 
     private FightDTO toFightDTO(FightResponseDTO responseDTO, Robot r1, Robot r2, Arena arena) {
         FightDTO fight = new FightDTO();
+        fight.setId(UUID.randomUUID());
         ArenaDTO arenaDTO = new ArenaDTO();
         arenaDTO.setId(arena.getId());
         arena.setField(arena.getField());
         fight.setArena(arenaDTO);
         fight.setFightMap(responseDTO.getFightMap());
         fight.setRobot1(r1.getId());
-        fight.setPlayer2(r2.getId());
+        fight.setRobot2(r2.getId());
+        fight.setPlayer1(r1.getAccount().getId());
+        fight.setPlayer2(r2.getAccount().getId());
         fight.setWinnerAccount(responseDTO.getWinner() == 1 ? r1.getId() : r2.getId());
         return fight;
     }
