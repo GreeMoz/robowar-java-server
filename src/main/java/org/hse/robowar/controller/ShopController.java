@@ -17,13 +17,20 @@ public class ShopController {
 
     private final ShopService shopService;
 
-    @GetMapping
-    public void findAll() {
-
-    }
-
     @GetMapping("/armor-equipment")
     public ResponseEntity<?> buyArmorEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
+        shopService.buyArmorEquipment(robotId, armorId);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/combat-equipment")
+    public ResponseEntity<?> buyCombatEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
+        shopService.buyArmorEquipment(robotId, armorId);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/movement-equipment")
+    public ResponseEntity<?> buyMovementEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
         shopService.buyArmorEquipment(robotId, armorId);
         return ResponseEntity.ok().build();
     }
