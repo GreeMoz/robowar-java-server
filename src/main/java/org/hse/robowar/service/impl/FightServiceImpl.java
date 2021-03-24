@@ -20,6 +20,7 @@ import org.hse.robowar.service.FightService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 import java.util.UUID;
 
@@ -92,8 +93,8 @@ public class FightServiceImpl implements FightService {
         fight.setFightMap(responseDTO.getFightMap());
         fight.setRobot1(r1.getId());
         fight.setRobot2(r2.getId());
-        fight.setPlayer1(r1.getAccount().getId());
-        fight.setPlayer2(r2.getAccount().getId());
+        fight.setPlayer1(Objects.nonNull(r1.getAccount()) ? r1.getAccount().getId() : null);
+        fight.setPlayer2(Objects.nonNull(r2.getAccount()) ? r2.getAccount().getId() : null);
         fight.setWinnerAccount(responseDTO.getWinner() == 1 ? r1.getId() : r2.getId());
         return fight;
     }
