@@ -1,11 +1,7 @@
 package org.hse.robowar.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.hse.robowar.dto.FightRequestDTO;
-import org.hse.robowar.service.FightService;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-import org.hse.robowar.dto.FightDTO;
+import org.hse.robowar.dto.FightResponseDTO;
 import org.hse.robowar.dto.mapper.FightMapper;
 import org.hse.robowar.service.FightService;
 import org.springframework.http.ResponseEntity;
@@ -24,16 +20,8 @@ public class FightController {
     private final FightService fightService;
     private final FightMapper fightMapper;
 
-    @GetMapping
-    public ResponseEntity<List<FightDTO>> findAll() {
-        return ResponseEntity.ok(fightMapper.toDto(fightService.findAll()));
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<FightDTO> findById(@PathVariable UUID id) {
-        return ResponseEntity.ok(fightMapper.toDto(fightService.findById(id)));
     @GetMapping("/fightWithInLeague/{leagueId}/withBot/{botId}")
-    public FightRequestDTO fight(@PathVariable("leagueId") UUID leagueId, @PathVariable("botId") UUID botId) {
-        return fightService.fightInLeague(leagueId, botId);
+    public ResponseEntity<FightResponseDTO> fight(@PathVariable("leagueId") UUID leagueId, @PathVariable("botId") UUID botId) {
+        return ResponseEntity.ok(fightService.fightInLeague(leagueId, botId));
     }
 }
