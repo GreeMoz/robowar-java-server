@@ -2,6 +2,7 @@ package org.hse.robowar.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hse.robowar.dto.ArenaDTO;
 import org.hse.robowar.dto.FightDTO;
 import org.hse.robowar.dto.FightRequestDTO;
 import org.hse.robowar.dto.FightResponseDTO;
@@ -54,7 +55,7 @@ public class FightServiceImpl implements FightService {
                 .getAsInt());
 
         log.info("FightRequest generated for bots {}, {} in league {}", robot1.getId(), robot2.getId(), league.getId());
-        return toFightDTO(pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena)), arena);
+        return toFightDTO(pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena)), robot1, robot2, arena);
     }
 
     private Robot getRandomRobotFromRobots(int index, List<Robot> robots) {
@@ -75,7 +76,16 @@ public class FightServiceImpl implements FightService {
         return new FightRequestDTO(robotMapper.toDto(r1), robotMapper.toDto(r2), arenaMapper.toDto(arena));
     }
 
-    private FightDTO toFightDTO(FightResponseDTO responseDTO, Arena arena) {
-        return new FightDTO();
+    private FightDTO toFightDTO(FightResponseDTO responseDTO, Robot r1, Robot r2, Arena arena) {
+        FightDTO fight = new FightDTO();
+        ArenaDTO arenaDTO = new ArenaDTO();
+        arenaDTO.setId(arena.getId());
+        arena.setField(arena.getField());
+        fight.setArena(arenaDTO);
+        fight.setFightMap(responseDTO.getFightMap());
+        fight.setRobot1(r1.getId());
+        fight.setPlayer2(r2.getId());
+        fight.setWinnerAccount(responseDTO.getWinner() == 1 ? r1.getId() : r2.getId());
+        return fight;
     }
 }
