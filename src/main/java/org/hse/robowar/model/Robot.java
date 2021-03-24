@@ -26,6 +26,8 @@ public class Robot {
     private double wear;
     private double weight;
     private double speed;
+    private double range;
+    private double damage;
     private double tiredness;
 
     private RobotStatus status;
@@ -53,4 +55,10 @@ public class Robot {
             joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "armor_equipment_id", referencedColumnName = "id")})
     private List<ArmorEquipment> ArmorEquipmentList;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinTable(name = "robot_algorithm",
+            joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "algorithm_id", referencedColumnName = "id")})
+    private BotAlgorithm botAlgorithm;
 }

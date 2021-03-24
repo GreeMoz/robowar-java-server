@@ -10,4 +10,6 @@ public interface FightService {
     List<Fight> findAll();
 
     Fight findById(UUID id);
+
+    FightRequestDTO fightInLeague(UUID leagueId, UUID botId);
 }
