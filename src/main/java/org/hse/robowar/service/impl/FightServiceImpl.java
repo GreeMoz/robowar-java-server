@@ -3,11 +3,13 @@ package org.hse.robowar.service.impl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hse.robowar.dto.FightRequestDTO;
+import org.hse.robowar.dto.FightResponseDTO;
 import org.hse.robowar.dto.mapper.ArenaMapper;
 import org.hse.robowar.dto.mapper.RobotMapper;
 import org.hse.robowar.model.Arena;
 import org.hse.robowar.model.League;
 import org.hse.robowar.model.Robot;
+import org.hse.robowar.remote.PythonRMI;
 import org.hse.robowar.repository.LeagueRepository;
 import org.hse.robowar.repository.RobotRepository;
 import org.hse.robowar.service.FightService;
@@ -28,8 +30,10 @@ public class FightServiceImpl implements FightService {
     private final RobotMapper robotMapper;
     private final ArenaMapper arenaMapper;
 
+    private final PythonRMI pythonRMI;
+
     @Override
-    public FightRequestDTO fightInLeague(UUID leagueId, UUID bot1Id) {
+    public FightResponseDTO fightInLeague(UUID leagueId, UUID bot1Id) {
         League league = leagueRepository.getOne(leagueId);
         Robot robot1 = robotRepository.getOne(bot1Id);
 
@@ -47,7 +51,7 @@ public class FightServiceImpl implements FightService {
         Arena arena = arenas.get(new Random().nextInt(arenas.size() - 2));
 
         log.info("FightRequest generated for bots {}, {} in league {}", robot1.getId(), robot2.getId(), league.getId());
-        return toDto(robot1, robot2, arena);
+        return pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena));
     }
 
     private Robot getRandomRobotFromRobots(int index, List<Robot> robots) {
@@ -58,7 +62,7 @@ public class FightServiceImpl implements FightService {
         return robots.get(randIndex);
     }
 
-    private FightRequestDTO toDto(Robot r1, Robot r2, Arena arena) {
+    private FightRequestDTO toFightRequestDTO(Robot r1, Robot r2, Arena arena) {
         return new FightRequestDTO(robotMapper.toDto(r1), robotMapper.toDto(r2), arenaMapper.toDto(arena));
     }
 }
