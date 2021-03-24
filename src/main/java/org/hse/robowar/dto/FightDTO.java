@@ -18,5 +18,5 @@ public class FightDTO implements Serializable {
 
     private UUID winnerAccount;
 
-    private String stepsOfFight;
+    private String fightMap;
 }

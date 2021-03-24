@@ -1,7 +1,7 @@
 package org.hse.robowar.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.hse.robowar.dto.FightResponseDTO;
+import org.hse.robowar.dto.FightDTO;
 import org.hse.robowar.dto.mapper.FightMapper;
 import org.hse.robowar.service.FightService;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +21,7 @@ public class FightController {
     private final FightMapper fightMapper;
 
     @GetMapping("/fightWithInLeague/{leagueId}/withBot/{botId}")
-    public ResponseEntity<FightResponseDTO> fight(@PathVariable("leagueId") UUID leagueId, @PathVariable("botId") UUID botId) {
+    public ResponseEntity<FightDTO> fight(@PathVariable("leagueId") UUID leagueId, @PathVariable("botId") UUID botId) {
         return ResponseEntity.ok(fightService.fightInLeague(leagueId, botId));
     }
 }
