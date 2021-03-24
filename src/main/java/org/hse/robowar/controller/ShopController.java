@@ -24,14 +24,14 @@ public class ShopController {
     }
 
     @GetMapping("/combat-equipment")
-    public ResponseEntity<?> buyCombatEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
-        shopService.buyArmorEquipment(robotId, armorId);
+    public ResponseEntity<?> buyCombatEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("combatId") UUID combatId) {
+        shopService.buyCombatEquipment(robotId, combatId);
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/movement-equipment")
-    public ResponseEntity<?> buyMovementEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
-        shopService.buyArmorEquipment(robotId, armorId);
+    public ResponseEntity<?> buyMovementEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("movementId") UUID movementId) {
+        shopService.buyMovementEquipment(robotId, movementId);
         return ResponseEntity.ok().build();
     }
 }
