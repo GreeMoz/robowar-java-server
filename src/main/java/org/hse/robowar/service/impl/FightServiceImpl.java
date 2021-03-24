@@ -48,7 +48,9 @@ public class FightServiceImpl implements FightService {
 
         List<Arena> arenas = league.getArenaList();
 
-        Arena arena = arenas.get(new Random().nextInt(arenas.size() - 2));
+        Arena arena = arenas.size() < 2 ? arenas.get(0) : arenas.get(new Random().ints(0, arenas.size()-1)
+                .findFirst()
+                .getAsInt());
 
         log.info("FightRequest generated for bots {}, {} in league {}", robot1.getId(), robot2.getId(), league.getId());
         return pythonRMI.getFightResponseDTO(toFightRequestDTO(robot1, robot2, arena));
