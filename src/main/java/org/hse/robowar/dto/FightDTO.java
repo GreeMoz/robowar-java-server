@@ -16,7 +16,7 @@ public class FightDTO implements Serializable {
     private UUID robot1;
     private UUID robot2;
 
-    private UUID winnerAccount;
+    private UUID winnerBotId;
 
     private String fightMap;
 

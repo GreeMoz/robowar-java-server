@@ -88,14 +88,14 @@ public class FightServiceImpl implements FightService {
         fight.setId(UUID.randomUUID());
         ArenaDTO arenaDTO = new ArenaDTO();
         arenaDTO.setId(arena.getId());
-        arena.setField(arena.getField());
+        arenaDTO.setField(arena.getField());
         fight.setArena(arenaDTO);
         fight.setFightMap(responseDTO.getFightMap());
         fight.setRobot1(r1.getId());
         fight.setRobot2(r2.getId());
         fight.setPlayer1(Objects.nonNull(r1.getAccount()) ? r1.getAccount().getId() : null);
         fight.setPlayer2(Objects.nonNull(r2.getAccount()) ? r2.getAccount().getId() : null);
-        fight.setWinnerAccount(responseDTO.getWinner() == 1 ? r1.getId() : r2.getId());
+        fight.setWinnerBotId(responseDTO.getWinner() == 1 ? r1.getId() : r2.getId());
         return fight;
     }
 }
