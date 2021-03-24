@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class FightShortDTO implements Serializable {
+public class FightRequestDTO implements Serializable {
     RobotDTO robot1;
     RobotDTO robot2;
 

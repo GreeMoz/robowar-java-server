@@ -2,7 +2,7 @@ package org.hse.robowar.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.hse.robowar.dto.FightShortDTO;
+import org.hse.robowar.dto.FightRequestDTO;
 import org.hse.robowar.dto.mapper.ArenaMapper;
 import org.hse.robowar.dto.mapper.RobotMapper;
 import org.hse.robowar.model.Arena;
@@ -29,7 +29,7 @@ public class FightServiceImpl implements FightService {
     private final ArenaMapper arenaMapper;
 
     @Override
-    public FightShortDTO fightInLeague(UUID leagueId, UUID bot1Id) {
+    public FightRequestDTO fightInLeague(UUID leagueId, UUID bot1Id) {
         League league = leagueRepository.getOne(leagueId);
         Robot robot1 = robotRepository.getOne(bot1Id);
 
@@ -58,7 +58,7 @@ public class FightServiceImpl implements FightService {
         return robots.get(randIndex);
     }
 
-    private FightShortDTO toDto(Robot r1, Robot r2, Arena arena) {
-        return new FightShortDTO(robotMapper.toDto(r1), robotMapper.toDto(r2), arenaMapper.toDto(arena));
+    private FightRequestDTO toDto(Robot r1, Robot r2, Arena arena) {
+        return new FightRequestDTO(robotMapper.toDto(r1), robotMapper.toDto(r2), arenaMapper.toDto(arena));
     }
 }

@@ -1,9 +1,9 @@
 package org.hse.robowar.service;
 
-import org.hse.robowar.dto.FightShortDTO;
+import org.hse.robowar.dto.FightRequestDTO;
 
 import java.util.UUID;
 
 public interface FightService {
-    FightShortDTO fightInLeague(UUID leagueId, UUID botId);
+    FightRequestDTO fightInLeague(UUID leagueId, UUID botId);
 }
