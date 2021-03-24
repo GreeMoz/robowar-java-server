@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '2.2.4.RELEASE'
+        springBootVersion = '2.4.0'
     }
     repositories {
         mavenCentral()
@@ -30,7 +30,7 @@ repositories {
 }
 
 ext {
-    springBootVersion = '2.2.4.RELEASE'
+    springBootVersion = '2.4.0'
     jjwtVersion = '0.2'
     lombokVersion = "1.18.12"
     mapstructVersion = "1.4.2.Final"
