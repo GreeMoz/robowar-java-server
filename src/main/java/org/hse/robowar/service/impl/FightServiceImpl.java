@@ -55,9 +55,15 @@ public class FightServiceImpl implements FightService {
     }
 
     private Robot getRandomRobotFromRobots(int index, List<Robot> robots) {
-        int randIndex = new Random().nextInt(robots.size() - 2);
-        while (randIndex == index) {
-            randIndex = new Random().nextInt(robots.size() - 2);
+        if (robots.isEmpty() || robots.size() == 1) {
+            throw new IllegalArgumentException("Not enough robots in league");
+        }
+        if (robots.size() == 2) {
+            return robots.get(robots.size() - index - 1);
+        }
+        int randIndex = new Random().nextInt(robots.size()) - 1;
+        while (randIndex == index || randIndex < 0) {
+            randIndex = new Random().nextInt(robots.size()) - 1;
         }
         return robots.get(randIndex);
     }
