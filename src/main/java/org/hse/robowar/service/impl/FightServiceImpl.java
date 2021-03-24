@@ -41,7 +41,8 @@ public class FightServiceImpl implements FightService {
 
         List<Arena> arenas = league.getArenaList();
 
-        Arena arena = arenas.get(arenas.size());
+        Random rand = new Random();
+        Arena arena = arenas.get(rand.nextInt(arenas.size()));
 
         log.info("Succesfully generated FightRequest for bots {}, {} in league {}", robot1.getId(), robot2.getId(), league.getId());
         return fightRequestMapper.toDto(robot1, robot2, arena);
