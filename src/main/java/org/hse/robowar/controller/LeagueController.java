@@ -27,7 +27,4 @@ public class LeagueController {
     public ResponseEntity<List<LeagueDTO>> findAll() {
         return ResponseEntity.ok(leagueMapper.toDto(leagueRepository.findAll()));
     }
-
-
-
 }
