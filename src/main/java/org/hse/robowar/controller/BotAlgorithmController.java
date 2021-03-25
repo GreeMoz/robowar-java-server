@@ -10,6 +10,7 @@ import org.hse.robowar.repository.RobotRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @RestController
@@ -27,12 +28,16 @@ public class BotAlgorithmController {
         return ResponseEntity.ok().build();
     }
 
-
     @PutMapping("/robot/{robotId}")
     public ResponseEntity<?> updateRobotAlgorithm(@PathVariable("robotId") UUID robotId, @RequestParam("algorithm") String algorithm) {
         Robot robot = robotRepository.getOne(robotId);
         BotAlgorithm botAlgorithm = robot.getBotAlgorithm();
+        if (Objects.isNull(botAlgorithm)) {
+            botAlgorithm = new BotAlgorithm();
+        }
         botAlgorithm.setAlgorithm(algorithm);
+        botAlgorithm = botAlgorithmRepository.save(botAlgorithm);
+        robot.setBotAlgorithm(botAlgorithm);
         robotRepository.save(robot);
         return ResponseEntity.ok().build();
     }

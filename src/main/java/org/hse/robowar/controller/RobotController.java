@@ -28,6 +28,12 @@ public class RobotController {
         return ResponseEntity.ok(robotMapper.toDto(robotService.findAll()));
     }
 
+    @PostMapping
+    public ResponseEntity<?> insert(@RequestBody RobotDTO robotDTO) {
+        robotRepository.save(robotMapper.toEntity(robotDTO));
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping("/my")
     public ResponseEntity<List<RobotWithLeagueDTO>> findMyRobots() {
         UUID accountId = accountService.getByAuth().getId();
