@@ -3,6 +3,7 @@ package org.hse.robowar.service.impl;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.hse.robowar.dto.RobotWithLeagueDTO;
+import org.hse.robowar.model.League;
 import org.hse.robowar.model.Robot;
 import org.hse.robowar.repository.RobotRepository;
 import org.hse.robowar.service.LeagueService;
@@ -51,7 +52,13 @@ public class RobotServiceImpl implements RobotService {
             dto.setMovementEquipmentList(robot.getMovementEquipmentList());
             dto.setArmorEquipmentList(robot.getArmorEquipmentList());
             dto.setBotAlgorithm(robot.getBotAlgorithm());
-            dto.setLeague(leagueService.getLeagueByMmr(robot.getMmr()));
+            League league = leagueService.getLeagueByMmr(robot.getMmr());
+            league.setMovementEquipmentList(null);
+            league.setArmorEquipmentList(null);
+            league.setCombatEquipmentList(null);
+            league.setBasis(null);
+            league.setRobotList(null);
+            dto.setLeague(league);
             robotWithLeagueDTOS.add(dto);
         }
         return robotWithLeagueDTOS;
