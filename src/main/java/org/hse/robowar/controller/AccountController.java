@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/auth/account")
 public class AccountController {
 
     private final AccountService accountService;
