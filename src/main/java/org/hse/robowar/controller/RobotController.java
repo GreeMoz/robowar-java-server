@@ -20,7 +20,7 @@ public class RobotController {
     private final RobotMapper robotMapper;
     private final RobotService robotService;
 
-    @PostMapping("/update")
+    @GetMapping
     public ResponseEntity<List<RobotDTO>> findAll() {
         return ResponseEntity.ok(robotMapper.toDto(robotService.findAll()));
     }
