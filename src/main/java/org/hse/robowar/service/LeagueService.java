@@ -6,4 +6,6 @@ import java.util.UUID;
 
 public interface LeagueService {
     League getById(UUID id);
+
+    League getLeagueByMmr(int mmr);
 }

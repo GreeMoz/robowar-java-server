@@ -22,4 +22,9 @@ public class LeagueServiceImpl implements LeagueService {
         return leagueRepository.findById(id).orElseThrow(() ->
                 new ObjectNotFoundException(id, League.class.getSimpleName()));
     }
+
+    @Override
+    public League getLeagueByMmr(int mmr) {
+        return leagueRepository.findLeagueByMrr(mmr);
+    }
 }

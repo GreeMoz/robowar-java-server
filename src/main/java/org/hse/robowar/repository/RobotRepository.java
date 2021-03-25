@@ -7,6 +7,6 @@ import java.util.List;
 import java.util.UUID;
 
 public interface RobotRepository extends JpaRepository<Robot, UUID> {
-    @Override
-    List<Robot> findAll();
+
+    List<Robot> findAllByAccount_Id(UUID account_id);
 }
