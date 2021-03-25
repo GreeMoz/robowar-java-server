@@ -1,13 +1,14 @@
 package org.hse.robowar.controller;
 
 import lombok.AllArgsConstructor;
+import org.hse.robowar.dto.AccountDTO;
 import org.hse.robowar.dto.AuthenticationRequestDTO;
 import org.hse.robowar.dto.AuthenticationResponseDTO;
+import org.hse.robowar.dto.mapper.AccountMapper;
 import org.hse.robowar.model.Account;
 import org.hse.robowar.security.jwt.JwtTokenProvider;
 import org.hse.robowar.service.AccountService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -15,11 +16,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 @RestController
@@ -28,6 +26,12 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final JwtTokenProvider tokenProvider;
     private final AccountService accountService;
+    private final AccountMapper accountMapper;
+
+    @PostMapping("/public/sign-up")
+    public AccountDTO create(@RequestBody AccountDTO account) {
+        return accountMapper.toDto(accountService.insert(accountMapper.toEntity(account)));
+    }
 
     @PostMapping("/public/login")
     public ResponseEntity<AuthenticationResponseDTO> login(@RequestBody AuthenticationRequestDTO requestDTO) {
