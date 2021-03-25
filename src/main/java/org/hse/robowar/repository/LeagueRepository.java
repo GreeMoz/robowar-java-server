@@ -9,6 +9,6 @@ import java.util.UUID;
 
 public interface LeagueRepository extends JpaRepository<League, UUID> {
 
-    @Query(value = "select * from league where minmmr<= mmr and maxmmr >= mmr limit 1", nativeQuery = true)
+    @Query(value = "select * from league where minmmr<= :mmr and maxmmr >= :mmr limit 1", nativeQuery = true)
     League findLeagueByMrr(@Param("mmr") int mmr);
 }
