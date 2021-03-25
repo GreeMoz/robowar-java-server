@@ -33,7 +33,7 @@ public class Robot {
     private RobotStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinTable(name = "robot_basis",
+    @JoinTable(name = "robot_league",
             joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "league_id", referencedColumnName = "id")})
     private League league;
