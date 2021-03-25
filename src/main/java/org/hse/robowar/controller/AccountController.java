@@ -27,6 +27,11 @@ public class AccountController {
         return accountMapper.toDto(accountService.findAll());
     }
 
+    @GetMapping("/get")
+    public AccountDTO getByAuth(){
+        return accountMapper.toDto(accountService.getByAuth());
+    }
+
     @GetMapping("/{id}")
     public AccountDTO findOne(@PathVariable("id") UUID id) {
         return accountMapper.toDto(accountService.findById(id));

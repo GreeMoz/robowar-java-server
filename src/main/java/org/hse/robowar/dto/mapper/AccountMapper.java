@@ -15,8 +15,8 @@ public interface AccountMapper extends EntityMapper<AccountDTO, Account> {
     @Mapping(target = "firstName", ignore = true)
     @Mapping(target = "lastName", ignore = true)
     @Mapping(target = "password", ignore = true)
-    @Mapping(target = "money", ignore = true)
-    @Mapping(target = "mmr", ignore = true)
+    @Mapping(target = "roles", ignore = true)
+    @Mapping(target = "status", ignore = true)
 
     @Override
     Account toEntity(AccountDTO dto);

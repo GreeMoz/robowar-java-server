@@ -3,9 +3,8 @@ package org.hse.robowar.model;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -16,11 +15,18 @@ public class Fight {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private UUID id;
 
+
     private UUID player1;
     private UUID player2;
 
     private UUID robot1;
     private UUID robot2;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "league_arena",
+            joinColumns = {@JoinColumn(name = "league_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "arena_id", referencedColumnName = "id")})
+    private List<Arena> ArenaList;
 
     private UUID winnerAccount;
 

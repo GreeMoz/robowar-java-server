@@ -21,7 +21,12 @@ public class AccountDTO implements Serializable {
 
     private String email;
 
-    private Status status;
+    private String firstName;
 
-    private List<Role> roles;
+    private String lastName;
+
+    private int money;
+
+    private int mmr;
+
 }

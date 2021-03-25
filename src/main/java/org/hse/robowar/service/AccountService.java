@@ -1,5 +1,6 @@
 package org.hse.robowar.service;
 
+import org.hse.robowar.dto.AccountDTO;
 import org.hse.robowar.model.Account;
 
 import java.util.List;
@@ -16,4 +17,6 @@ public interface AccountService {
     Account findById(UUID id);
 
     void delete(UUID id);
+
+    Account getByAuth();
 }
