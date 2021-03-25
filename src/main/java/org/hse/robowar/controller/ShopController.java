@@ -17,21 +17,36 @@ public class ShopController {
 
     private final ShopService shopService;
 
-    @GetMapping("/armor-equipment")
+    @GetMapping("/buy/armor-equipment")
     public ResponseEntity<?> buyArmorEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("armorId") UUID armorId) {
         shopService.buyArmorEquipment(robotId, armorId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/combat-equipment")
+    @GetMapping("/buy/combat-equipment")
     public ResponseEntity<?> buyCombatEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("combatId") UUID combatId) {
         shopService.buyCombatEquipment(robotId, combatId);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/movement-equipment")
+    @GetMapping("/buy/movement-equipment")
     public ResponseEntity<?> buyMovementEquipment(@RequestParam("robotId") UUID robotId, @RequestParam("movementId") UUID movementId) {
         shopService.buyMovementEquipment(robotId, movementId);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/sell/armor-equipment")
+    public ResponseEntity<?> sellArmorEquipment() {
+        return ResponseEntity.ok().build();
+     }
+
+    @GetMapping("/sell/combat-equipment")
+    public ResponseEntity<?> sellCombatEquipment() {
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/sell/movement-equipment")
+    public ResponseEntity<?> sellMovementEquipment() {
         return ResponseEntity.ok().build();
     }
 }
