@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("/public/fight")
+@RequestMapping("/fight")
 @RequiredArgsConstructor
 public class FightController {
 
