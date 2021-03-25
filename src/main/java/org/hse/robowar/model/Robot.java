@@ -35,6 +35,12 @@ public class Robot {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinTable(name = "robot_basis",
             joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "league_id", referencedColumnName = "id")})
+    private League league;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinTable(name = "robot_basis",
+            joinColumns = {@JoinColumn(name = "robot_id", referencedColumnName = "id")},
             inverseJoinColumns = {@JoinColumn(name = "basis_id", referencedColumnName = "id")})
     private Basis basis;
 

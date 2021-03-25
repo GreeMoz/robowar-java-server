@@ -2,6 +2,7 @@ package org.hse.robowar.service.impl;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.ObjectNotFoundException;
 import org.hse.robowar.model.League;
 import org.hse.robowar.repository.LeagueRepository;
 import org.hse.robowar.service.LeagueService;
@@ -13,12 +14,12 @@ import java.util.UUID;
 @AllArgsConstructor
 @Slf4j
 public class LeagueServiceImpl implements LeagueService {
-    LeagueRepository leagueRepository;
+
+    private final LeagueRepository leagueRepository;
 
     @Override
     public League getById(UUID id) {
-        League league = leagueRepository.getOne(id);
-        log.info("League with id {} successfully inserted", league.getId());
-        return league;
+        return leagueRepository.findById(id).orElseThrow(() ->
+                new ObjectNotFoundException(id, League.class.getSimpleName()));
     }
 }
