@@ -23,7 +23,7 @@ plugins {
 group 'org.hse'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 13
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 repositories {
     mavenCentral()
